@@ -77,19 +77,18 @@ class OTPView extends StatelessWidget {
             ],
           ),
           const Expanded(flex: 2, child: SizedBox()),
-          phoneAuth.isLoading
-              ? const CircularProgressIndicator()
-              : MyButton(
-                  btnText: "Verify",
-                  ontap: () {
-                    // print(otpController.text);
-                    phoneAuth.verifyOTP(
-                        context: context,
-                        code: otpController.text.toString(),
-                        verifyId: verificationId);
-                  },
-                  padding: const EdgeInsets.symmetric(horizontal: 56),
-                ),
+          MyButton(
+            isLoading: phoneAuth.isLoading,
+            btnText: "Verify",
+            ontap: () {
+              // print(otpController.text);
+              phoneAuth.verifyOTP(
+                  context: context,
+                  code: otpController.text.toString(),
+                  verifyId: verificationId);
+            },
+            padding: const EdgeInsets.symmetric(horizontal: 56),
+          ),
           const Expanded(flex: 2, child: SizedBox()),
         ],
       ),

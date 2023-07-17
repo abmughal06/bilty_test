@@ -58,6 +58,7 @@ class CustomAlertDialog extends StatelessWidget {
             ),
             verticalSpace(30),
             MyButton(
+              isLoading: false,
               btnText: btnText,
               ontap: () => Navigator.pop(context),
               height: 50,
