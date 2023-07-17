@@ -1,20 +1,22 @@
 import 'package:bilty/utils/widgets/text_size.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../screens/auth/provider/auth_provider.dart';
 
 class MyButton extends StatelessWidget {
   final String? btnText;
   final EdgeInsets? padding;
   final double? height;
   final VoidCallback? ontap;
+  final bool isLoading;
   const MyButton(
-      {super.key, this.btnText, this.padding, this.height, this.ontap});
+      {super.key,
+      this.btnText,
+      this.padding,
+      this.height,
+      this.ontap,
+      required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
-    final loadingProvider = Provider.of<AuthenticationProvider>(context);
     return Padding(
       padding: padding ?? const EdgeInsets.symmetric(horizontal: 20),
       child: ElevatedButton(
@@ -26,8 +28,10 @@ class MyButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
         ),
-        child: loadingProvider.isLoading
-            ? const CircularProgressIndicator()
+        child: isLoading
+            ? const CircularProgressIndicator(
+                color: Colors.white,
+              )
             : AlignText(
                 align: Alignment.center,
                 text: "$btnText",

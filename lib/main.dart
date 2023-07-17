@@ -1,13 +1,13 @@
 import 'package:bilty/firebase_options.dart';
-import 'package:bilty/screens/auth/login.dart';
+import 'package:bilty/screens/auth/authenticate.dart';
 import 'package:bilty/utils/state_management.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(uiProvider);
 }
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const LoginScreen(),
+      home: const Authenticate(),
     );
   }
 }

@@ -21,7 +21,6 @@ class LoginScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Expanded(flex: 2, child: SizedBox()),
-
           verticalSpace(40),
           const AlignText(
             text: "Bilty",
@@ -41,10 +40,6 @@ class LoginScreen extends StatelessWidget {
             textColor: Colors.grey,
           ),
           const Expanded(flex: 1, child: SizedBox()),
-          // Flexible(
-          //   fit: FlexFit.loose,
-          //   child: verticalSpace(40),
-          // ),
           const AlignText(
             padding: EdgeInsets.only(left: 33),
             text: 'Enter your Number',
@@ -55,20 +50,18 @@ class LoginScreen extends StatelessWidget {
           verticalSpace(12),
           PhoneNumberTextField(
             controller: phoneController,
-            hint: "+92 3000000000",
+            hint: "+92 300 0000000",
           ),
-
           const Expanded(flex: 3, child: SizedBox()),
-          phoneService.isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : MyButton(
-                  btnText: "Next",
-                  ontap: () {
-                    phoneService.loginWithPhone(
-                        phoneController.text.replaceAll(" ", ""), context);
-                  },
-                  padding: const EdgeInsets.symmetric(horizontal: 56),
-                ),
+          MyButton(
+            isLoading: phoneService.isLoading,
+            btnText: "Next",
+            ontap: () {
+              phoneService.loginWithPhone(
+                  phoneController.text.replaceAll(" ", ""), context);
+            },
+            padding: const EdgeInsets.symmetric(horizontal: 56),
+          ),
           const Expanded(flex: 4, child: SizedBox()),
           // verticalSpace(50),
         ],

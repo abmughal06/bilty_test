@@ -11,12 +11,15 @@ class AuthenticationProvider extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  var authState = '';
+  // var authState = '';
   String verificationID = '';
+
+  Stream<User?> get authState => FirebaseAuth.instance.idTokenChanges();
 
   void loginWithPhone(String? phoneNumber, context) async {
     try {
       _isLoading = true;
+      notifyListeners();
       await FirebaseAuth.instance.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
@@ -49,7 +52,11 @@ class AuthenticationProvider extends ChangeNotifier {
             showDialog(
               context: context,
               builder: (BuildContext context) {
-                return const Text('Sign In failed');
+                return CustomAlertDialog(
+                  title: 'Sign in Failed',
+                  message: e.toString(),
+                  btnText: 'Got it',
+                );
               },
             );
           }
@@ -66,6 +73,8 @@ class AuthenticationProvider extends ChangeNotifier {
         timeout: const Duration(seconds: 60),
       );
     } on FirebaseAuthException catch (e) {
+      _isLoading = false;
+      notifyListeners();
       if (e.code == 'invalid-phone-number') {
         showDialog(
           context: context,
@@ -101,12 +110,15 @@ class AuthenticationProvider extends ChangeNotifier {
 
     try {
       _isLoading = true;
+      notifyListeners();
       await FirebaseAuth.instance.signInWithCredential(credential).then(
         (value) {
           Get.offAll(const RegisterView());
         },
       );
     } catch (e) {
+      _isLoading = false;
+      notifyListeners();
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -121,5 +133,9 @@ class AuthenticationProvider extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     }
+  }
+
+  void logout() async {
+    await FirebaseAuth.instance.signOut();
   }
 }
