@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "943250700246",
+    "project_id": "bilty-f6294",
+    "storage_bucket": "bilty-f6294.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943250700246:android:8bd3c90cae5895bc099677",
+        "android_client_info": {
+          "package_name": "com.example.bilty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943250700246-fcqdas1hrtg7tknfmpd5btt8jg0hnc1o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlo9MiTh4pHLPR_SNrZpesVzyx8oHakqY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943250700246-fcqdas1hrtg7tknfmpd5btt8jg0hnc1o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
