@@ -123,3 +123,42 @@ class OtpFields extends StatelessWidget {
     );
   }
 }
+
+class RegisterTextFields extends StatelessWidget {
+  const RegisterTextFields(
+      {super.key, required this.controller, required this.hint});
+
+  final TextEditingController controller;
+  final String hint;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32),
+      child: SizedBox(
+        height: 52,
+        child: TextFormField(
+          controller: controller,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            color: Colors.grey.shade600,
+          ),
+          keyboardType: TextInputType.text,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            hintText: hint,
+            hintStyle: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: Colors.grey,
+            ),
+            contentPadding: const EdgeInsets.only(left: 16),
+          ),
+        ),
+      ),
+    );
+  }
+}

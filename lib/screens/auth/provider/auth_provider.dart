@@ -113,7 +113,7 @@ class AuthenticationProvider extends ChangeNotifier {
       notifyListeners();
       await FirebaseAuth.instance.signInWithCredential(credential).then(
         (value) {
-          Get.offAll(const RegisterView());
+          Get.offAll(Register());
         },
       );
     } catch (e) {
@@ -136,6 +136,23 @@ class AuthenticationProvider extends ChangeNotifier {
   }
 
   void logout() async {
-    await FirebaseAuth.instance.signOut();
+    try {
+      _isLoading = true;
+      notifyListeners();
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      _isLoading = false;
+      notifyListeners();
+      Get.defaultDialog(
+        content: CustomAlertDialog(
+          title: 'Sign out Failed',
+          message: e.toString(),
+          btnText: 'Got it',
+        ),
+      );
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 }
